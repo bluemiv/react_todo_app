@@ -3,7 +3,7 @@ import InputBox from '../components/InputBox';
 import ToDoItemList from '../components/ToDoItemList';
 
 const Home = () => (
-  <div>
+  <div className="homepage__container">
     {/* ToDo Item을 추가할 수 있는 input 박스 */}
     <InputBox />
 
