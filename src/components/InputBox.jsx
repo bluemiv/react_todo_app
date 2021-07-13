@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const InputBox = ({ todoItemList, setTodoItemList }) => {
+const InputBox = ({ todoList, setTodoList }) => {
   const [text, setText] = useState('');
   const inputRef = useRef(null);
 
@@ -12,21 +12,20 @@ const InputBox = ({ todoItemList, setTodoItemList }) => {
 
   const onClickAddButton = () => {
     // todoItemList에 값 추가
-    setTodoItemList(todoItemList.concat(text));
+    const nextTodoList = todoList.concat({
+      id: todoList.length,
+      text,
+    });
+    setTodoList(nextTodoList);
 
     // input 값 초기화 및 포커싱
     setText('');
     inputRef.current.focus();
   };
 
-  //   // 디버깅을 위해 출력하여 확인
-  //   useEffect(() => {
-  //     console.log(todoItemList);
-  //   }, [todoItemList]);
-
   return (
     <div className="todoapp__inputbox">
-      {/* 항목 내용 입력 input */}
+      {/* 아이템 내용 입력 input */}
       <input
         type="text"
         name="todoItem"
@@ -36,7 +35,7 @@ const InputBox = ({ todoItemList, setTodoItemList }) => {
         className="todoapp__inputbox-inp"
         onChange={onChangeInput}
       />
-      {/* 입력 후 항목 추가 버튼 */}
+      {/* 입력 후 아이템 추가 버튼 */}
       <button
         type="submit"
         className="todoapp__inputbox-add-btn"
@@ -50,8 +49,13 @@ const InputBox = ({ todoItemList, setTodoItemList }) => {
 
 // props 값 검증
 InputBox.propTypes = {
-  todoItemList: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setTodoItemList: PropTypes.func.isRequired,
+  todoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  setTodoList: PropTypes.func.isRequired,
 };
 
 export default InputBox;

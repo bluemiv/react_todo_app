@@ -3,17 +3,17 @@ import InputBox from '../components/InputBox';
 import ToDoItemList from '../components/ToDoItemList';
 
 const Home = () => {
-  const [todoItemList, setTodoItemList] = useState([]);
+  const [todoList, setTodoList] = useState([]);
 
   return (
     <div className="homepage__container">
       {/* ToDo Item을 추가할 수 있는 input 박스 */}
-      <InputBox todoItemList={todoItemList} setTodoItemList={setTodoItemList} />
+      <InputBox todoList={todoList} setTodoList={setTodoList} />
 
-      {/* 할 일 항목 리스트 */}
-      <ToDoItemList />
+      {/* 할 일 Item 리스트 */}
+      <ToDoItemList todoList={todoList} />
 
-      {/* 완료한 항목 리스트 */}
+      {/* 완료한 Item 리스트 */}
       <ToDoItemList />
     </div>
   );
