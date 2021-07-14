@@ -15,6 +15,7 @@ const InputBox = ({ todoList, setTodoList }) => {
     const nextTodoList = todoList.concat({
       id: todoList.length,
       text,
+      checked: false,
     });
     setTodoList(nextTodoList);
 

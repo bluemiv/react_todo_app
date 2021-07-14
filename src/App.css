@@ -69,6 +69,11 @@
 .todoapp__item-ctx {
   flex: 1;
 }
+.todoapp__item-ctx-checked {
+  font-style: italic;
+  text-decoration: line-through;
+  color: #868e96;
+}
 .todoapp__item-edit-btn,
 .todoapp__item-delete-btn {
   border: none;
