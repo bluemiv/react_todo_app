@@ -42,6 +42,17 @@ const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
     setEdited(false);
   };
 
+  const onClickDeleteButton = () => {
+    if (window.confirm('정말로 지우실건가요?')) {
+      const nextTodoList = todoList.map((item) => ({
+        ...item,
+        deleted: item.id === todoItem.id ? true : item.deleted,
+      }));
+
+      setTodoList(nextTodoList);
+    }
+  };
+
   return (
     <li className="todoapp__item">
       {/* 아이템 완료 체크 / 체크 해제를 위한 체크박스 */}
@@ -96,7 +107,11 @@ const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
       }
 
       {/* 삭제 버튼 */}
-      <button type="button" className="todoapp__item-delete-btn">
+      <button
+        type="button"
+        className="todoapp__item-delete-btn"
+        onClick={onClickDeleteButton}
+      >
         🗑
       </button>
     </li>
