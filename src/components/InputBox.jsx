@@ -10,7 +10,9 @@ const InputBox = ({ todoList, setTodoList }) => {
     setText(e.target.value);
   };
 
-  const onClickAddButton = () => {
+  const onPressSubmitButton = (e) => {
+    e.preventDefault();
+
     // todoItemList에 값 추가
     const nextTodoList = todoList.concat({
       id: todoList.length,
@@ -26,7 +28,7 @@ const InputBox = ({ todoList, setTodoList }) => {
   };
 
   return (
-    <div className="todoapp__inputbox">
+    <form onSubmit={onPressSubmitButton} className="todoapp__inputbox">
       {/* 아이템 내용 입력 input */}
       <input
         type="text"
@@ -38,14 +40,10 @@ const InputBox = ({ todoList, setTodoList }) => {
         onChange={onChangeInput}
       />
       {/* 입력 후 아이템 추가 버튼 */}
-      <button
-        type="submit"
-        className="todoapp__inputbox-add-btn"
-        onClick={onClickAddButton}
-      >
+      <button type="submit" className="todoapp__inputbox-add-btn">
         추가
       </button>
-    </div>
+    </form>
   );
 };
 
