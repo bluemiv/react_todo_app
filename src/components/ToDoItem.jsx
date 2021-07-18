@@ -71,6 +71,7 @@ const ToDoItem = ({ todoItem, todoList, setTodoList }) => {
             value={newText}
             ref={editInputRef}
             onChange={onChangeEditInput}
+            onKeyPress={onClickSubmitButton}
           />
         ) : (
           <span
