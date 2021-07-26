@@ -1,6 +1,6 @@
 {
   "name": "todo-app",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dockerbuild": "react-scripts build && PACKAGE_VERSION=$(awk '/\"version\"/' package.json | awk -F\\\" '{ print $4 }' | sed 's/[ ]//g') && docker build -t todoapp:$PACKAGE_VERSION . && docker images && rm -rf ./build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,9 +38,9 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 1 version",
+      "> 1%",
+      "ie 10"
     ],
     "development": [
       "last 1 chrome version",
